@@ -103,7 +103,7 @@ window.onload = () => {
   elTasksAll.checked = true;
   if (localStorage.getItem("mode") === "dark") themeChanger();
   const tasks = JSON.parse(localStorage.getItem("tasks"));
-  if (tasks.length > 0) {
+  if (tasks?.length > 0) {
     tasksData.push(...tasks);
     uiUpdater(tasksData);
   }

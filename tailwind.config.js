@@ -32,8 +32,8 @@ export default {
           "0px 35px 50px -15px rgba(194, 195, 214, 0.50)",
       },
       backgroundImage: {
-        "light-bg": "url('img/light-bg.jpg')",
-        "dark-bg": "url('img/dark-bg.jpg')",
+        "light-bg": "url('./img/light-bg.jpg')",
+        "dark-bg": "url('./img/dark-bg.jpg')",
         "light-input-circle": "url('img/light-unchecked.svg')",
         "dark-input-circle": "url('img/dark-unchecked.svg')",
         "light-unchecked": "url('img/light-unchecked.svg')",
