@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Josefin Sans";
+    src: url("fonts/JosefinSans-Regular.woff2") format("woff2"),
+      url("fonts/JosefinSans-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Josefin Sans";
+    src: url("fonts/JosefinSans-Bold.woff2") format("woff2"),
+      url("fonts/JosefinSans-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* CUSTOM SCROLLBAR */
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #9495a5;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+
+  /* VISUALLY-HIDDEN  */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+
+  *:focus {
+    outline: 3px dashed #494c6b;
+    outline-offset: 2.5px;
+  }
+
+  html[class="dark"] *:focus {
+    outline: 3px dashed #c8cbe7;
+    outline-offset: 2.5px;
+  }
+
+  html[class="dark"] ::-webkit-scrollbar-thumb {
+    background-color: #5b5e7e;
+  }
+
+  html[class="dark"] ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+
+  body {
+    font-family: "Josefin Sans", "Arial", "sans-serif";
+  }
+
+  .swing {
+    animation: swing 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+
+  @keyframes swing {
+    0% {
+      transform: rotateX(-100deg);
+      transform-origin: top;
+      opacity: 0;
+    }
+    100% {
+      transform: rotateX(0deg);
+      transform-origin: top;
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Favicon  -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#7e6963" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title  -->
+    <title>To do list app</title>
+  </head>
+  <body
+    class="bg-light-theme-body dark:bg-dark-theme-body transition-colors text-[18px] -tracking-[0.25px] h-full"
+  >
+    <div
+      class="transition-[background-image] duration-300 relative h-[300px] bg-no-repeat bg-cover bg-center bg-light-bg dark:bg-dark-bg"
+    >
+      <header class="pt-[70px] pb-10">
+        <div
+          class="w-full max-w-[561px] mx-auto px-5 flex items-center justify-between"
+        >
+          <a
+            class="transition-opacity hover:opacity-80 active:opacity-60"
+            href="index.html"
+          >
+            <img
+              src="img/logo.svg"
+              alt="To do app logo"
+              width="167"
+              height="40"
+            />
+          </a>
+          <button
+            class="transition-transform hover:opacity-80 active:scale-90"
+            id="themeChangerButton"
+          >
+            <img
+              src="img/moon.svg"
+              alt="Dark, light theme toggler"
+              data-moon="/img/moon.svg"
+              data-shine="/img/shine.svg"
+            />
+          </button>
+        </div>
+      </header>
+
+      <!-- Create new to do input -->
+      <div class="w-full max-w-[561px] mx-auto px-5">
+        <form method="post" id="newTaskCreaterForm">
+          <input
+            class="bg-none bg-no-repeat bg-[left_24px_center] transition-colors focus:outline-none w-full py-5 pl-[72px] pr-6 text-light-task-input-text-color bg-white rounded-[5px] placeholder:text-light-nav-item-color shadow-light-task-input-shadow dark:shadow-dark-cards-shadow dark:bg-dark-card-color dark:focus:outline-none dark:placeholder:text-dark-nav-item-color dark:text-dark-task-input-text-color caret-[#3a7cfd] dark:bg-none placeholder-shown:bg-light-input-circle dark:placeholder-shown:bg-dark-input-circle"
+            id="newTaskCreaterInput"
+            type="text"
+            placeholder="Create a new todo…"
+            autocomplete="off"
+            maxlength="100"
+            minlength="4"
+            autofocus
+            required
+          />
+        </form>
+      </div>
+    </div>
+
+    <!-- Tasks  -->
+    <section class="w-full max-w-[561px] mx-auto px-5">
+      <div
+        class="shadow-light-cards-shadow dark:shadow-dark-cards-shadow rounded-[5px] overflow-hidden -translate-y-[54px]"
+      >
+        <h2 class="visually-hidden">Tasks</h2>
+        <div class="flex flex-col max-h-[431px] h-full">
+          <ul class="h-full overflow-y-auto" id="tasks"></ul>
+          <div
+            class="hidden py-4 px-6 text-[14px] -tracking-[0.19px] items-center justify-between bg-white dark:bg-dark-card-color"
+            id="actions"
+          >
+            <span class="text-light-nav-item-color dark:dark-nav-item-color"
+              ><span class="itemLeftCount">0</span> items left</span
+            >
+
+            <div class="flex items-center">
+              <input
+                class="visually-hidden peer/all"
+                id="tasksAll"
+                value="all"
+                type="radio"
+                name="status"
+                checked
+              />
+              <label
+                class="mr-5 transition-colors font-bold text-light-nav-item-color hover:text-light-text-color focus:outline-none dark:focus:outline-none cursor-pointer dark:hover:text-light-border-color peer-checked/all:text-blue"
+                for="tasksAll"
+                >All</label
+              >
+              <input
+                class="visually-hidden peer/active"
+                id="tasksActive"
+                value="active"
+                type="radio"
+                name="status"
+              />
+              <label
+                class="mr-5 transition-colors font-bold text-light-nav-item-color hover:text-light-text-color focus:outline-none dark:focus:outline-none cursor-pointer dark:hover:text-light-border-color peer-checked/active:text-blue"
+                for="tasksActive"
+              >
+                Active
+              </label>
+              <input
+                class="visually-hidden peer/completed"
+                id="tasksCompleted"
+                value="completed"
+                type="radio"
+                name="status"
+              />
+              <label
+                class="transition-colors font-bold text-light-nav-item-color hover:text-light-text-color focus:outline-none dark:focus:outline-none cursor-pointer dark:hover:text-light-border-color peer-checked/completed:text-blue"
+                for="tasksCompleted"
+              >
+                Completed
+              </label>
+            </div>
+            <button
+              class="capitalize transition-transform text-light-nav-item-color hover:text-light-text-color active:scale-90 dark:hover:text-light-border-color"
+              id="clearCompletedButton"
+            >
+              Clear completed
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Task data modal  -->
+    <dialog id="taskDescriptionModal" class="modal bg-modal-bg">
+      <div class="modal-box bg-light-card-color dark:bg-dark-card-color">
+        <form method="dialog">
+          <button
+            class="btn btn-circle btn-ghost absolute right-2 top-2 text-light-text-color dark:text-dark-text-color min-w-[18px] min-h-[18px] bg-light-x bg-no-repeat bg-center dark:bg-dark-x transition-transform active:scale-90"
+          ></button>
+        </form>
+        <div
+          class="flex flex-col text-light-text-color dark:text-dark-text-color"
+        >
+          <h3 class="font-bold text-[24px] mb-6">Task details</h3>
+          <dl>
+            <div class="flex items-center mb-2">
+              <dt class="font-bold mr-3 whitespace-nowrap">Title:</dt>
+              <dd class="truncate" id="taskTitle"></dd>
+            </div>
+            <div class="flex items-center mb-2">
+              <dt class="font-bold mr-3 whitespace-nowrap">Description:</dt>
+              <dd class="truncate" id="taskDescription"></dd>
+            </div>
+            <div class="flex items-center mb-2">
+              <dt class="font-bold mr-3 whitespace-nowrap">Created date:</dt>
+              <dd class="truncate" id="taskCreatedDate"></dd>
+            </div>
+            <div class="flex items-center mb-2">
+              <dt class="font-bold mr-3 whitespace-nowrap">Status:</dt>
+              <dd class="truncate" id="taskStatus"></dd>
+            </div>
+            <div class="flex items-center">
+              <dt class="font-bold mr-3 whitespace-nowrap">Task ID:</dt>
+              <dd class="truncate" id="taskId"></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Audios  -->
+    <audio id="audioRemoveTask" src="audios/remove-task.mp3"></audio>
+    <audio id="audioThemeChange" src="audios/theme-change.mp3"></audio>
+    <audio id="audioSelectStatus" src="audios/select-status.mp3"></audio>
+    <audio id="audioCheck" src="audios/check.mp3"></audio>
+    <audio id="audioAddNewTask" src="audios/add-new-task.mp3"></audio>
+
+    <!-- Card template -->
+    <template id="taskCardTemplate">
+      <li id="taskCard">
+        <div
+          class="bg-white flex items-center py-5 px-6 border-b transition-colors border-light-border-color dark:border-dark-border-color dark:bg-dark-card-color"
+        >
+          <input
+            id=""
+            class="visually-hidden peer js-task-checker"
+            type="checkbox"
+          />
+          <label
+            for=""
+            id="taskCheckerLabel"
+            class="min-w-[24px] min-h-[24px] mr-6 cursor-pointer transition-all bg-light-unchecked dark:bg-dark-unchecked bg-no-repeat bg-center hover:bg-unchecked-hover dark:hover:bg-unchecked-hover peer-checked:bg-checked dark:peer-checked:bg-checked"
+          >
+          </label>
+
+          <h3
+            class="pr-3 truncate overflow-hidden whitespace-nowrap text-light-text-color dark:text-dark-text-color peer-checked:text-light-completed dark:peer-checked:text-dark-completed peer-checked:line-through cursor-pointer hover:underline"
+            id="taskTitle"
+          ></h3>
+          <button
+            class="ml-auto min-w-[18px] min-h-[18px] bg-light-x bg-no-repeat bg-center dark:bg-dark-x transition-transform hover:opacity-80 active:scale-90"
+            id="taskRemoveButton"
+          ></button>
+        </div>
+      </li>
+    </template>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

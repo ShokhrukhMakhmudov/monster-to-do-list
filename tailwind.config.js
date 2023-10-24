@@ -1,0 +1,51 @@
+/** @type {import('tailwindcss').config} */
+export default {
+  content: ["./*.{html,js}"],
+  darkMode: "class",
+  theme: {
+    colors: {
+      white: "#ffffff",
+      blue: "#3a7cfd",
+      "light-theme-body": "#fafafa",
+      "dark-theme-body": "#171823",
+      "light-card-color": "#ffffff",
+      "dark-card-color": "#25273d",
+      "light-text-color": "#494c6b",
+      "light-task-input-text-color": "#393a4b",
+      "dark-task-input-text-color": "#c8cbe7",
+      "dark-text-color": "#c8cbe7",
+      "light-placeholder": "#9495a5",
+      "dark-placeholder": "#767992",
+      "light-border-color": "#e3e4f1",
+      "dark-border-color": "#393a4b",
+      "light-nav-item-color": "#9495a5",
+      "dark-nav-items-color": "#5b5e7e",
+      "light-completed": "#d1d2da",
+      "dark-completed": "#4d5067",
+      "modal-bg": "rgba(23, 24, 35, 0.4)",
+    },
+    extend: {
+      boxShadow: {
+        "light-cards-shadow": "0px 35px 50px -15px rgba(194, 195, 214, 0.50)",
+        "dark-cards-shadow": "0px 35px 50px -15px rgba(0, 0, 0, 0.50)",
+        "light-task-input-shadow":
+          "0px 35px 50px -15px rgba(194, 195, 214, 0.50)",
+      },
+      backgroundImage: {
+        "light-bg": "url('img/light-bg.jpg')",
+        "dark-bg": "url('img/dark-bg.jpg')",
+        "light-input-circle": "url('img/light-unchecked.svg')",
+        "dark-input-circle": "url('img/dark-unchecked.svg')",
+        "light-unchecked": "url('img/light-unchecked.svg')",
+        "dark-unchecked": "url('img/dark-unchecked.svg')",
+        "light-checked": "url('img/light-checked.svg')",
+        "dark-checked": "url('img/dark-checked.svg')",
+        "unchecked-hover": "url('img/unchecked-hover.svg')",
+        "light-x": "url('img/light-x.svg')",
+        "dark-x": "url('img/dark-x.svg')",
+        checked: "url('img/checked.svg')",
+      },
+    },
+  },
+  plugins: [require("daisyui")],
+};
